@@ -88,13 +88,31 @@ function initContactForm() {
 
     if (!valid) return;
 
-    // No backend wired up — this is a static front-end demo.
-    // Replace this block with a fetch() call to your form endpoint.
-    if (successBox) {
-      successBox.classList.add("show");
-      successBox.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
-    form.reset();
+    // Google Form submission
+    const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfgHybcI5vC7T0Jvi-4r-gD3z8kICWkV5IYVTCmaFSYtLJQfg/formResponse";
+    const formData = new FormData();
+    formData.append("entry.1206917105", document.getElementById("name").value.trim());
+    formData.append("entry.545286278", document.getElementById("email").value.trim());
+    formData.append("entry.1537049493", document.getElementById("organisation").value.trim());
+    formData.append("entry.1227665698", document.getElementById("message").value.trim());
+    formData.append("entry.1588747940", document.getElementById("topic").value);
+
+    // Send the post request
+    fetch(formUrl, {
+      method: "POST",
+      mode: "no-cors",
+      body: formData
+    })
+    .then(() => {
+      if (successBox) {
+        successBox.classList.add("show");
+        successBox.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      form.reset();
+    })
+    .catch((error) => {
+      console.error("Error submitting form:", error);
+    });
   });
 }
 

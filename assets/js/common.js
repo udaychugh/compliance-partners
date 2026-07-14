@@ -40,7 +40,7 @@ const NDISCP = (function () {
         <div class="nav-actions">
           <span class="nav-phone">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            1300 634 700
+            0498475578
           </span>
           <a href="contact.html" class="btn btn-primary btn-sm">Book a Consult</a>
           <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
@@ -88,9 +88,8 @@ const NDISCP = (function () {
         <div class="footer-col">
           <h4>Get In Touch</h4>
           <ul class="footer-contact">
-            <li>&#9993; hello@ndiscompliancepartners.com.au</li>
-            <li>&#9742; 1300 634 700</li>
-            <li>&#128205; Level 4, 210 Collins Street, Melbourne VIC 3000</li>
+            <li>&#9993; contact@lgpartners.com.au</li>
+            <li>&#9742; 0498475578</li>
             <li>&#128337; Mon&ndash;Fri, 9am&ndash;5:30pm AEST</li>
           </ul>
         </div>
