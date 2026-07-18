@@ -1308,7 +1308,7 @@ section {
 }
 .media {
   border-radius: var(--radius-lg);
-  background: var(--purple-light);
+  background: var(--bg);
   padding: 20px;
   position: relative;
   min-height: 340px;
