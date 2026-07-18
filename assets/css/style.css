@@ -1295,16 +1295,14 @@ section {
 .media {
   border-radius: var(--radius-lg);
   background: var(--purple-light);
-  padding: 40px;
+  padding: 20px;
   position: relative;
   min-height: 340px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.media img {
-  max-width: 260px;
-}
+
 @media (max-width: 860px) {
   .split-media {
     grid-template-columns: 1fr;

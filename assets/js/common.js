@@ -57,7 +57,6 @@ const NDISCP = (function () {
       <div class="wrap footer-top">
         <div class="footer-col">
           <div class="footer-brand">
-            <img src="${LOGO_PATH}" alt="NDIS Compliance Partners logo" width="42" height="42" />
             <span class="footer-brand-text">NDIS Compliance Partners</span>
           </div>
           <p class="footer-desc">Independent governance, risk, compliance, finance and business advisory support for NDIS providers across Australia &mdash; from first registration to full audit readiness.</p>
@@ -90,7 +89,6 @@ const NDISCP = (function () {
           <ul class="footer-contact">
             <li>&#9993; contact@lgpartners.com.au</li>
             <li>&#9742; 0498475578</li>
-            <li>&#128337; Mon&ndash;Fri, 9am&ndash;5:30pm AEST</li>
           </ul>
         </div>
       </div>
