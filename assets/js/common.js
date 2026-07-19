@@ -87,7 +87,7 @@ const NDISCP = (function () {
         <div class="footer-col">
           <h4>Get In Touch</h4>
           <ul class="footer-contact">
-            <li>&#9993; contact@lgpartners.com.au</li>
+            <li>&#9993; ndiscompliance@lgpartners.com.au</li>
             <li>&#9742; 0498475578</li>
           </ul>
         </div>
