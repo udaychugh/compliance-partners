@@ -1468,3 +1468,186 @@ section {
     transform: rotate(360deg);
   }
 }
+
+/* =========================================================
+   Footer Facebook Link
+   ========================================================= */
+.footer-contact a {
+  color: rgba(255, 255, 255, 0.78);
+  transition: color 0.15s ease;
+}
+.footer-contact a:hover {
+  color: #fff;
+}
+.footer-fb-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.footer-fb-link:hover {
+  color: #1877f2 !important;
+}
+
+/* =========================================================
+   Facebook Follow Modal
+   ========================================================= */
+.fb-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.fb-modal-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.fb-modal-card {
+  background: #ffffff;
+  border-radius: var(--radius-lg, 24px);
+  max-width: 440px;
+  width: 100%;
+  padding: 36px 32px 32px;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.3);
+  position: relative;
+  transform: translateY(20px) scale(0.96);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.fb-modal-overlay.show .fb-modal-card {
+  transform: translateY(0) scale(1);
+}
+
+.fb-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: var(--bg, #f7f5f0);
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--ink-soft, #4b5468);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.fb-modal-close:hover {
+  background: var(--line, rgba(26, 39, 68, 0.12));
+  color: var(--ink, #1a2744);
+}
+
+.fb-modal-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.fb-modal-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 18px;
+  background: #1877f2;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 24px -6px rgba(24, 119, 242, 0.45);
+}
+
+.fb-modal-badge {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #1877f2;
+  font-weight: 700;
+  background: #e7f3ff;
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+
+.fb-modal-title {
+  font-family: var(--font-display, serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink, #1a2744);
+  margin-bottom: 10px;
+  line-height: 1.25;
+}
+
+.fb-modal-desc {
+  font-size: 14.5px;
+  color: var(--ink-soft, #4b5468);
+  line-height: 1.55;
+  margin-bottom: 24px;
+}
+
+.fb-modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.fb-modal-btn-follow {
+  background: #1877f2 !important;
+  color: #ffffff !important;
+  border: none !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 20px;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: var(--radius-sm, 10px);
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 8px 20px -6px rgba(24, 119, 242, 0.4);
+}
+
+.fb-modal-btn-follow:hover {
+  background: #166fe5 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px -6px rgba(24, 119, 242, 0.5);
+}
+
+.fb-modal-btn-cancel {
+  background: transparent;
+  border: 1.5px solid var(--line-strong, rgba(26, 39, 68, 0.22));
+  color: var(--ink-soft, #4b5468);
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--radius-sm, 10px);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.fb-modal-btn-cancel:hover {
+  background: var(--bg, #f7f5f0);
+  color: var(--ink, #1a2744);
+  border-color: var(--ink, #1a2744);
+}

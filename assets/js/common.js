@@ -8,21 +8,28 @@
    ========================================================= */
 
 const NDISCP = (function () {
-
   const LOGO_PATH = "assets/images/logo.webp";
+  const FB_PAGE_URL = "https://www.facebook.com/ndiscompliancepartners/";
+
+  // Number of days to snooze the Facebook follow prompt when user clicks Cancel / Close
+  const FB_POPUP_SNOOZE_DAYS = 5;
 
   const NAV_LINKS = [
-    { key: "home",          label: "Home",                 href: "index.html" },
-    { key: "services",      label: "Compliance Services",  href: "services.html" },
-    { key: "registrations", label: "Business Registrations", href: "business-registrations.html" },
-    { key: "about",         label: "About Us",             href: "about.html" },
-    { key: "contact",       label: "Contact",              href: "contact.html" },
+    { key: "home", label: "Home", href: "index.html" },
+    { key: "services", label: "Compliance Services", href: "services.html" },
+    {
+      key: "registrations",
+      label: "Business Registrations",
+      href: "business-registrations.html",
+    },
+    { key: "about", label: "About Us", href: "about.html" },
+    { key: "contact", label: "Contact", href: "contact.html" },
   ];
 
   function navHTML(active) {
     const links = NAV_LINKS.map(
       (l) =>
-        `<a href="${l.href}" class="${l.key === active ? "active" : ""}">${l.label}</a>`
+        `<a href="${l.href}" class="${l.key === active ? "active" : ""}">${l.label}</a>`,
     ).join("");
 
     return `
@@ -87,8 +94,14 @@ const NDISCP = (function () {
         <div class="footer-col">
           <h4>Get In Touch</h4>
           <ul class="footer-contact">
-            <li>&#9993; ndiscompliance@lgpartners.com.au</li>
-            <li>&#9742; 0498475578</li>
+            <li>&#9993; <a href="mailto:ndiscompliance@lgpartners.com.au">ndiscompliance@lgpartners.com.au</a></li>
+            <li>&#9742; <a href="tel:0498475578">0498475578</a></li>
+            <li>
+              <a href="${FB_PAGE_URL}" target="_blank" rel="noopener noreferrer" class="footer-fb-link">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                <span>Follow on Facebook</span>
+              </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -122,7 +135,7 @@ const NDISCP = (function () {
           links.classList.remove("open");
           toggle.classList.remove("open");
           toggle.setAttribute("aria-expanded", "false");
-        })
+        }),
       );
     }
   }
@@ -167,10 +180,117 @@ const NDISCP = (function () {
     }
   }
 
+  function initFBModal() {
+    try {
+      const isFollowed = localStorage.getItem("ndiscp_fb_followed");
+      if (isFollowed === "true") return;
+
+      const dismissedUntil = localStorage.getItem("ndiscp_fb_dismissed_until");
+      if (dismissedUntil && Date.now() < parseInt(dismissedUntil, 10)) {
+        return;
+      }
+    } catch (e) {
+      // Ignore storage errors in restricted context
+    }
+
+    setTimeout(showFBModal, 1000);
+  }
+
+  function showFBModal() {
+    if (document.getElementById("fb-follow-modal")) return;
+
+    const modal = document.createElement("div");
+    modal.id = "fb-follow-modal";
+    modal.className = "fb-modal-overlay";
+    modal.setAttribute("role", "dialog");
+    modal.setAttribute("aria-modal", "true");
+    modal.setAttribute("aria-labelledby", "fb-modal-title");
+
+    modal.innerHTML = `
+      <div class="fb-modal-card">
+        <button class="fb-modal-close" id="fbModalClose" aria-label="Close modal">&times;</button>
+        <div class="fb-modal-header">
+          <div class="fb-modal-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </div>
+          <span class="fb-modal-badge">Official Facebook Page</span>
+        </div>
+        <h3 id="fb-modal-title" class="fb-modal-title">Stay Updated on Facebook!</h3>
+        <p class="fb-modal-desc">
+          Follow <strong>NDIS Compliance Partners</strong> on Facebook for mandatory NDIS regulatory updates, audit readiness tips, and governance insights.
+        </p>
+        <div class="fb-modal-actions">
+          <a href="${FB_PAGE_URL}" target="_blank" rel="noopener noreferrer" class="btn fb-modal-btn-follow" id="fbModalFollow">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            Follow Us on Facebook
+          </a>
+          <button class="btn fb-modal-btn-cancel" id="fbModalCancel">Maybe Later</button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    requestAnimationFrame(() => {
+      modal.classList.add("show");
+    });
+
+    const snoozeModal = () => {
+      try {
+        const snoozeTime =
+          Date.now() + FB_POPUP_SNOOZE_DAYS * 24 * 60 * 60 * 1000;
+        localStorage.setItem(
+          "ndiscp_fb_dismissed_until",
+          snoozeTime.toString(),
+        );
+      } catch (e) {}
+      closeModal();
+    };
+
+    const followModal = () => {
+      try {
+        localStorage.setItem("ndiscp_fb_followed", "true");
+      } catch (e) {}
+      closeModal();
+    };
+
+    const closeModal = () => {
+      modal.classList.remove("show");
+      setTimeout(() => {
+        if (modal.parentNode) {
+          modal.remove();
+        }
+      }, 300);
+    };
+
+    const followBtn = document.getElementById("fbModalFollow");
+    const cancelBtn = document.getElementById("fbModalCancel");
+    const closeBtn = document.getElementById("fbModalClose");
+
+    if (followBtn) followBtn.addEventListener("click", followModal);
+    if (cancelBtn) cancelBtn.addEventListener("click", snoozeModal);
+    if (closeBtn) closeBtn.addEventListener("click", snoozeModal);
+
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        snoozeModal();
+      }
+    });
+
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        snoozeModal();
+        document.removeEventListener("keydown", handleKeyDown);
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+  }
+
   function init(activePage) {
     showPreloader();
     mountNav(activePage || "");
     mountFooter();
+    initFBModal();
   }
 
   return { init };
