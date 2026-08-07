@@ -955,9 +955,21 @@ section {
   font-size: 13.5px;
   align-items: flex-start;
 }
-.footer-bottom {
+.footer-disclaimer {
   border-top: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 22px 0;
+  padding: 18px 0 0 0;
+  text-align: center;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.5;
+}
+.footer-disclaimer p {
+  margin: 0 auto;
+  max-width: 900px;
+}
+.footer-bottom {
+  border-top: none;
+  padding: 16px 0 22px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;

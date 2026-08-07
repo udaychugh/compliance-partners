@@ -106,6 +106,10 @@ const NDISCP = (function () {
         </div>
       </div>
 
+      <div class="wrap footer-disclaimer">
+        <p><em>NDIS Compliance Partners is an independent consulting business and is not affiliated with, endorsed by, or acting on behalf of the National Disability Insurance Agency (NDIA) or the NDIS Quality and Safeguards Commission.</em></p>
+      </div>
+
       <div class="wrap footer-bottom">
         <span>&copy; ${year} NDIS Compliance Partners. All rights reserved.</span>
         <div class="footer-legal">
